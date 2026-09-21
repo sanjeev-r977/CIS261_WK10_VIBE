@@ -66,5 +66,34 @@ def main():
         print(f"Letter Grade: {grade}")
         print()
 
+def display_all_students(students):
+    print("\n" + "=" * 70)
+    print("ALL STUDENT RECORDS")
+    print("=" * 70)
+
+    for student in students:
+        print(f"Name: {student['name']}")
+        print(f"Student ID: {student['id']}")
+        print(f"Test 1: {student['test1']:.2f}")
+        print(f"Test 2: {student['test2']:.2f}")
+        print(f"Test 3: {student['test3']:.2f}")
+        print(f"Average: {student['average']:.2f}")
+        print(f"Letter Grade: {student['grade']}")
+        print("-" * 70)
+
+def display_statistics(students):
+    averages = [student["average"] for student in students]
+
+    highest_average = max(averages)
+    lowest_average = min(averages)
+    class_average = sum(averages) / len(averages)
+
+    print("\n" + "=" * 50)
+    print("CLASS STATISTICS")
+    print("=" * 50)
+    print(f"Highest Average: {highest_average:.2f}")
+    print(f"Lowest Average: {lowest_average:.2f}")
+    print(f"Class Average: {class_average:.2f}")
+    print("=" * 50)        
 
 main()
