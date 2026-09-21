@@ -1,0 +1,70 @@
+# Sanjeev Rana Magar
+# CIS261
+# Week 10 VIBE Coding
+# Student Grade Calculator
+
+
+def calculate_average(test1, test2, test3):
+    average = (test1 + test2 + test3) / 3
+    return average
+
+
+def calculate_letter_grade(average):
+    if average >= 90:
+        grade = "A"
+    elif average >= 80:
+        grade = "B"
+    elif average >= 70:
+        grade = "C"
+    elif average >= 60:
+        grade = "D"
+    else:
+        grade = "F"
+
+    return grade
+
+
+def main():
+    students = []
+
+    print("=" * 50)
+    print("STUDENT GRADE CALCULATOR")
+    print("=" * 50)
+    print("Enter student information when prompted.")
+    print("Type ESC as the student name when finished.")
+    print("=" * 50)
+
+    while True:
+        name = input("Enter student name (or ESC to exit): ")
+
+        if name.upper() == "ESC":
+            break
+
+        student_id = input("Enter student ID: ")
+
+        test1 = float(input("Enter Test 1 score: "))
+        test2 = float(input("Enter Test 2 score: "))
+        test3 = float(input("Enter Test 3 score: "))
+
+        average = calculate_average(test1, test2, test3)
+        grade = calculate_letter_grade(average)
+
+        student = {
+            "name": name,
+            "id": student_id,
+            "test1": test1,
+            "test2": test2,
+            "test3": test3,
+            "average": average,
+            "grade": grade
+        }
+
+        students.append(student)
+
+        print("\nStudent record added.")
+        print(f"Average: {average:.2f}")
+        print(f"Letter Grade: {grade}")
+        print()
+
+
+main()
