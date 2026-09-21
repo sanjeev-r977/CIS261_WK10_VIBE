@@ -3,6 +3,8 @@
 # Week 10 VIBE Coding
 # Student Grade Calculator
 
+# VIBE assisted with creating and testing the grade calculation functions.
+
 
 def calculate_average(test1, test2, test3):
     average = (test1 + test2 + test3) / 3
@@ -22,6 +24,63 @@ def calculate_letter_grade(average):
         grade = "F"
 
     return grade
+
+
+def display_all_students(students):
+    print("\n" + "=" * 70)
+    print("ALL STUDENT RECORDS")
+    print("=" * 70)
+
+    for student in students:
+        print(f"Name: {student['name']}")
+        print(f"Student ID: {student['id']}")
+        print(f"Test 1: {student['test1']:.2f}")
+        print(f"Test 2: {student['test2']:.2f}")
+        print(f"Test 3: {student['test3']:.2f}")
+        print(f"Average: {student['average']:.2f}")
+        print(f"Letter Grade: {student['grade']}")
+        print("-" * 70)
+
+
+def display_statistics(students):
+    averages = [student["average"] for student in students]
+
+    highest_average = max(averages)
+    lowest_average = min(averages)
+    class_average = sum(averages) / len(averages)
+
+    print("\n" + "=" * 50)
+    print("CLASS STATISTICS")
+    print("=" * 50)
+    print(f"Highest Average: {highest_average:.2f}")
+    print(f"Lowest Average: {lowest_average:.2f}")
+    print(f"Class Average: {class_average:.2f}")
+    print("=" * 50)
+
+
+def search_student_by_name(students):
+    search_name = input("\nEnter student name to search: ")
+
+    found = False
+
+    for student in students:
+        if student["name"].lower() == search_name.lower():
+            print("\n" + "=" * 50)
+            print("STUDENT FOUND")
+            print("=" * 50)
+            print(f"Name: {student['name']}")
+            print(f"Student ID: {student['id']}")
+            print(f"Test 1: {student['test1']:.2f}")
+            print(f"Test 2: {student['test2']:.2f}")
+            print(f"Test 3: {student['test3']:.2f}")
+            print(f"Average: {student['average']:.2f}")
+            print(f"Letter Grade: {student['grade']}")
+            print("=" * 50)
+
+            found = True
+
+    if found == False:
+        print("\nNo matching student found.")
 
 
 def main():
@@ -66,34 +125,17 @@ def main():
         print(f"Letter Grade: {grade}")
         print()
 
-def display_all_students(students):
-    print("\n" + "=" * 70)
-    print("ALL STUDENT RECORDS")
-    print("=" * 70)
+    if len(students) > 0:
+        display_all_students(students)
 
-    for student in students:
-        print(f"Name: {student['name']}")
-        print(f"Student ID: {student['id']}")
-        print(f"Test 1: {student['test1']:.2f}")
-        print(f"Test 2: {student['test2']:.2f}")
-        print(f"Test 3: {student['test3']:.2f}")
-        print(f"Average: {student['average']:.2f}")
-        print(f"Letter Grade: {student['grade']}")
-        print("-" * 70)
+        display_statistics(students)
 
-def display_statistics(students):
-    averages = [student["average"] for student in students]
+        search_choice = input(
+            "\nWould you like to search for a student? (yes/no): "
+        )
 
-    highest_average = max(averages)
-    lowest_average = min(averages)
-    class_average = sum(averages) / len(averages)
+        if search_choice.lower() == "yes":
+            search_student_by_name(students)
 
-    print("\n" + "=" * 50)
-    print("CLASS STATISTICS")
-    print("=" * 50)
-    print(f"Highest Average: {highest_average:.2f}")
-    print(f"Lowest Average: {lowest_average:.2f}")
-    print(f"Class Average: {class_average:.2f}")
-    print("=" * 50)        
 
 main()
